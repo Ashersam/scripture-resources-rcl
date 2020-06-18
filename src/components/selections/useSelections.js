@@ -15,7 +15,7 @@ function useSelections({
 }) {
 
   useEffect(() => {
-    
+    console.log("useEffect/1")
     const _selections = helpers.selectionsFromQuote({
       quote,
       verseObjects,
@@ -26,6 +26,7 @@ function useSelections({
   }, [quote, occurrence, verseObjects]);
 
   useEffect(() => {
+    console.log("useEffect/2")
     if (verseObjects && onQuote) {
       const _quote = helpers.quoteFromVerse({selections, verseObjects});
       onQuote(_quote);
