@@ -45,19 +45,20 @@ export const selectionFromWord = (word) => {
     occurrence: parseInt(occurrence),
     occurrences: parseInt(occurrences),
   };
-  const selection = JSON.stringify(selectionObject);
-  return selection;
+  return selectionObject;
 };
 
 export const isSelected = ({ word, selections }) => {
   const selection = selectionFromWord(word);
+  debugger;
   const selected = selections.includes(selection);
   return selected;
 };
 
 export const areSelected = ({ words, selections }) => {
   let selected = false;
-  const _selections = words.map(word => selectionFromWord(word));
+  const _selections = words.slice(0);
+  debugger;
   _selections.forEach(selection => {
     //if (selections.includes(_s)) selected = true;
     const _selection = JSON.parse(selection);
@@ -78,16 +79,18 @@ export const areSelected = ({ words, selections }) => {
 };
 
 export const addSelection = ({ word, selections }) => {
-  let _selections = new Set(selections);
+  let _selections = selections.slice(0);
   const selection = selectionFromWord(word);
+  debugger;
   _selections.add(selection);
   return [..._selections];
 };
 
 export const addSelections = ({ words, selections }) => {
-  let _selections = new Set(selections);
+  let _selections = selections.slice(0);
   words.forEach(word => {
     const selection = selectionFromWord(word);
+    debugger;
     _selections.add(selection);
   });
   return [..._selections];
@@ -95,17 +98,21 @@ export const addSelections = ({ words, selections }) => {
 
 export const removeSelection = ({ word, selections }) => {
   const selection = selectionFromWord(word);
-  const _selections = new Set(selections);
+  debugger;
+  const _selections = selections.slice(0);
   _selections.delete(selection);
   return [..._selections];
 };
 
 export const removeSelections = ({ words, selections }) => {
-  let _selections = new Set(selections);
+  debugger;
+  let _selections = selections.slice(0);
   words.forEach(word => {
     const selection = selectionFromWord(word);
+    debugger;
     _selections.delete(selection);
   });
+  debugger;
   return [..._selections];
 };
 
