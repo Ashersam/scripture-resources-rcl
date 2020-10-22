@@ -31,9 +31,8 @@ export const resourceFromResourceLink = async ({
         project, resource, reference,
       }),
     );
-    const project = await projectFromProjects({
+    const project = projectFromProjects({
       reference,
-      projectId: reference.bookId,
       projects,
     });
     const _resource = {
@@ -114,12 +113,11 @@ export const getResourceProjectFile = async ({
   return file;
 };
 
-export const projectFromProjects = async ({
+export const projectFromProjects = ({
   reference,
-  projectId,
   projects,
 }) => {
-  let identifier = reference && reference.bookId ? reference.bookId : projectId;
+  let identifier = reference.bookId;
   const project = projects.filter(
     (project) => project.identifier === identifier,
   )[0];
